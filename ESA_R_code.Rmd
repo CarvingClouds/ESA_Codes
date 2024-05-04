@@ -110,7 +110,7 @@ violin_fig_avoid_index =
     #                 box.padding = 0.35,
      #                point.padding = 0.5,
       #               segment.color = NA) +
-  scale_y_continuous(name = "Avoidance index change", limits = c(-1.0, 0.35)) +
+  scale_y_continuous(name = "Lawn occupancy  change", limits = c(-1.0, 0.35)) +
   xlab("") +
   scale_fill_manual(values = c("#DF8538")) +
   theme_bw(base_size = 16) +
