@@ -13,6 +13,30 @@ library(ggbeeswarm)
 library(ggrepel)
 ```
 
+## Figure 2 - Import and plot box- and dotplot for lawn occupancy of live and PFA killed OP50 and JUb134
+
+```{r}
+df_sm = read.csv("sm_avoidance_repeat.csv")
+
+# factor the "condition" variable and decide the order using levels.
+df_sm$condition = factor(df_sm$condition, levels = c("live_op50", "pfa_op50","live_jub134", "pfa_jub134"))
+
+# Factor "hour" and decide the order showing in the legend using levels. 
+df_sm$hour = factor(df_sm$hour, levels = c("6h", "24h", "30h"))
+
+fig_df_sm = ggplot(df_sm, aes(condition, percentage, fill = hour)) + 
+  geom_boxplot(aes(fill=hour)) +
+  geom_point(position=position_dodge(width=0.75)) +
+  scale_y_continuous(labels = scales::percent_format(scale = 100)) +
+  scale_x_discrete(labels = c("Live OP50", "PFA killed OP50", "Live JUb134", "PFA killed JUb134")) +
+  ylab("Percentage worms on the lawn") +
+  xlab("") +
+  guides(fill = guide_legend(title = NULL)) +
+  theme_bw(base_size = 15) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 15), axis.text.y = element_text(size = 15))
+print(fig_df_sm)
+```
+
 ## Figure 3 - Import and plot dataset for N2 worms only
 ```{r, warning=FALSE, echo=TRUE}
 
